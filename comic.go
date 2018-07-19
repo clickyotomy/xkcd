@@ -162,8 +162,8 @@ func FetchComic(num int) (Comic, error) {
 	return comic, err
 }
 
-// FetchRandomComic fetches a random comic number from FetchRandomComicNumber
-// and passes it on to FetchComic and returns a Comic.
+// FetchRandomComic fetches a random comic number and fetches the Comic for
+// that number.
 func FetchRandomComic() (comic Comic, err error) {
 	num, err := FetchRandomComicNum()
 	if err != nil {
