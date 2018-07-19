@@ -3,6 +3,7 @@ package xkcd
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -30,9 +31,9 @@ type Comic struct {
 	 * SafeTitle is the same as Title (but safer?) ¯\_(ツ)_/¯.
 	 * Transcript is the textual description of the comic
 	 * Alt is the text content you seen when you hover over the comic image.
-	 * Img is the URL to the comic image
+	 * Img is the URL to the comic image.
 	 * News is for announcements (not sure, it's usually empty).
-	 * DateTime is the Day, Month and Year parsed into type Time
+	 * DateTime is the Day, Month and Year parsed into type Time.
 	 */
 	Num        int    `json:"num"`
 	Day        string `json:"day"`
@@ -53,8 +54,8 @@ func newReq(method, url string) (req *http.Request, err error) {
 	return
 }
 
-// disableRedirect returns a policy to a Request object to not follow
-// redirections.
+// disableRedirect returns a policy function to a Request object to not follow
+// HTTP redirects.
 func disableRedirect(req *http.Request, via []*http.Request) error {
 	return http.ErrUseLastResponse
 }
@@ -158,6 +159,8 @@ func FetchComic(num int) (Comic, error) {
 			return comic, err
 		}
 		comic, err = ParseComicResponse(body)
+	} else {
+		err = errors.New(fmt.Sprintf("error: %s\n", resp.Status))
 	}
 	return comic, err
 }
