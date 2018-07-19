@@ -12,14 +12,15 @@ import (
 )
 
 var (
-	comicNum  = 1024
-	testDir   = "./testdata"
-	testComic Comic
-	testImg   []byte
-	curComic  Comic
-	curImg    []byte
+	comicNum  = 1024         // comic number to test
+	testDir   = "./testdata" // location of static test data
+	testComic Comic          // the Comic to be fetched and tested
+	testImg   []byte         // the image of the Comic to be tested
+	curComic  Comic          // test data (in JSON) parsed into type Comic
+	curImg    []byte         // test image loaded into memory for the test
 )
 
+// loadTest loads the data for testing from `testDir'.
 func loadTest(comic *Comic, img *[]byte) (err error) {
 	testJSON, err := ioutil.ReadFile(filepath.Join(testDir, "error_code.json"))
 	if err != nil {
@@ -39,6 +40,7 @@ func loadTest(comic *Comic, img *[]byte) (err error) {
 	return nil
 }
 
+// fetchImg downloads the comic image.
 func fetchImg(url string) (content []byte, err error) {
 	resp, err := http.Get(url)
 	if err != nil {
@@ -50,10 +52,12 @@ func fetchImg(url string) (content []byte, err error) {
 	return
 }
 
+// TestInit initalized the test data.
 func TestInit(t *testing.T) {
 	loadTest(&testComic, &testImg)
 }
 
+// TestFetchComic tests the functionality of FetchComic.
 func TestFetchComic(t *testing.T) {
 	curComic, err := FetchComic(comicNum)
 	if err != nil {
@@ -91,6 +95,7 @@ func TestFetchComic(t *testing.T) {
 	}
 }
 
+// TestFetchRandomComicNum tests the functionality of FetchRandomComicNum.
 func TestFetchRandomComicNum(t *testing.T) {
 	var num, err = FetchRandomComicNum()
 

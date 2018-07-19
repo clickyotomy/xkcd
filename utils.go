@@ -58,7 +58,7 @@ func FetchComicImg(url, path string) error {
 	return nil
 }
 
-// ToStr pretty prints a Comic struct.
+// ToStr pretty prints the members of type Comic.
 func (c Comic) ToStr() string {
 	var spewFmt = spew.ConfigState{Indent: "\t"}
 	return spewFmt.Sdump(c)
