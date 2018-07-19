@@ -1,4 +1,4 @@
-// Package xkcd is a simple wrapper around the https://xkcd.com JSON interface.
+// Package xkcd is a simple wrapper around https://xkcd.com's JSON interface.
 package xkcd
 
 import (
