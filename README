@@ -1,0 +1,7 @@
+xkcd
+----
+
+A a simple wrapper around the https://xkcd.com JSON interface, written in `go'.
+
+To install, run:
+    $ go get "github.com/clickyotomy/xkcd"
