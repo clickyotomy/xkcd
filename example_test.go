@@ -2,7 +2,7 @@ package xkcd
 
 import "fmt"
 
-func Example_FetchRandomComic() {
+func Example_FetchComic() {
     comic, err := FetchComic(1024)
 
     if err != nil {
