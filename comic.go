@@ -3,7 +3,6 @@ package xkcd
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -136,7 +135,7 @@ func FetchComic(num int) (Comic, error) {
 	)
 
 	if num < 1 {
-		return comic, fmt.Errorf("invalid comic number (%d)\n", num)
+		return comic, fmt.Errorf("error: invalid comic number: `%d'", num)
 	}
 
 	req, err := newReq("get", url)
@@ -160,7 +159,7 @@ func FetchComic(num int) (Comic, error) {
 		}
 		comic, err = ParseComicResponse(body)
 	} else {
-		err = errors.New(fmt.Sprintf("error: %s\n", resp.Status))
+		err = fmt.Errorf("error: %s", resp.Status)
 	}
 	return comic, err
 }

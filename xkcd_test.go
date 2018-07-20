@@ -95,6 +95,17 @@ func TestFetchComic(t *testing.T) {
 	}
 }
 
+// TestFetchComicNotFound tests for a failure to fetch a comic.
+func TestFetchComicNotFound(t *testing.T) {
+	_, err := FetchComic(99999)
+	if err.Error() != "error: 404 Not Found" {
+		t.Errorf(
+			"Expected an HTTP status of `404 Not Found', but got %s.",
+			err,
+		)
+	}
+}
+
 // TestFetchRandomComicNum tests the functionality of FetchRandomComicNum.
 func TestFetchRandomComicNum(t *testing.T) {
 	var num, err = FetchRandomComicNum()
