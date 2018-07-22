@@ -1,4 +1,4 @@
-package xkcd
+package xkcd_test
 
 import (
 	"fmt"
@@ -8,26 +8,28 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/clickyotomy/xkcd"
+
 	"github.com/davecgh/go-spew/spew"
 )
 
 var (
 	comicNum  = 1024         // comic number to test
 	testDir   = "./testdata" // location of static test data
-	testComic Comic          // the Comic to be fetched and tested
+	testComic xkcd.Comic     // the Comic to be fetched and tested
 	testImg   []byte         // the image of the Comic to be tested
-	curComic  Comic          // test data (in JSON) parsed into type Comic
+	curComic  xkcd.Comic     // test data (in JSON) parsed into type Comic
 	curImg    []byte         // test image loaded into memory for the test
 )
 
 // loadTest loads the data for testing from `testDir'.
-func loadTest(comic *Comic, img *[]byte) (err error) {
+func loadTest(comic *xkcd.Comic, img *[]byte) (err error) {
 	testJSON, err := ioutil.ReadFile(filepath.Join(testDir, "error_code.json"))
 	if err != nil {
 		fmt.Errorf("Unable to read test data!\n")
 		panic(err)
 	}
-	*comic, err = ParseComicResponse(testJSON)
+	*comic, err = xkcd.ParseComicResponse(testJSON)
 	if err != nil {
 		fmt.Errorf("Unable to parse data!\n")
 		panic(err)
@@ -59,7 +61,7 @@ func TestInit(t *testing.T) {
 
 // TestFetchComic tests the functionality of FetchComic.
 func TestFetchComic(t *testing.T) {
-	curComic, err := FetchComic(comicNum)
+	curComic, err := xkcd.FetchComic(comicNum)
 	if err != nil {
 		t.Errorf("Could not fetch comic.\nError: %+v\n", err)
 	}
@@ -97,7 +99,7 @@ func TestFetchComic(t *testing.T) {
 
 // TestFetchComicNotFound tests for a failure to fetch a comic.
 func TestFetchComicNotFound(t *testing.T) {
-	_, err := FetchComic(99999)
+	_, err := xkcd.FetchComic(99999)
 	if err.Error() != "error: 404 Not Found" {
 		t.Errorf(
 			"Expected an HTTP status of `404 Not Found', but got %s.",
@@ -108,7 +110,7 @@ func TestFetchComicNotFound(t *testing.T) {
 
 // TestFetchRandomComicNum tests the functionality of FetchRandomComicNum.
 func TestFetchRandomComicNum(t *testing.T) {
-	var num, err = FetchRandomComicNum()
+	var num, err = xkcd.FetchRandomComicNum()
 
 	if err != nil {
 		t.Fatalf("Could not fetch a random comic.\nError: %+v\n", err)
