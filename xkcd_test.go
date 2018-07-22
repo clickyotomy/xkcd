@@ -14,12 +14,20 @@ import (
 )
 
 var (
-	comicNum  = 1024         // comic number to test
-	testDir   = "./testdata" // location of static test data
-	testComic xkcd.Comic     // the Comic to be fetched and tested
-	testImg   []byte         // the image of the Comic to be tested
-	curComic  xkcd.Comic     // test data (in JSON) parsed into type Comic
-	curImg    []byte         // test image loaded into memory for the test
+	// comicNum is the comic number to test.
+	comicNum = 1024
+	// testDir is the location of static test data.
+	testDir = "./testdata"
+	// testComic is the `Comic' to be fetched.
+	testComic xkcd.Comic
+	// testImg the image of the comic to be fetched.
+	testImg []byte
+	// curComic test data (in JSON) parsed into type `Comic'
+	// (and tested again `testComic').
+	curComic xkcd.Comic
+	// curImg is the test image loaded into memory for
+	// testing against `testImg'.
+	curImg []byte
 )
 
 // loadTest loads the data for testing from `testDir'.

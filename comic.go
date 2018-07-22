@@ -13,10 +13,14 @@ import (
 )
 
 const (
+	// protocol is the default protocol for access the API.
 	protocol = "https://"
-	host     = "xkcd.com"
-	api      = "/info.0.json"
-	random   = "/random/comic"
+	// Host is  the hostname of the `xkcd' API.
+	host = "xkcd.com"
+	// api is the  default API access endpoint.
+	api = "/info.0.json"
+	// random is the API endpoint for random comic.
+	random = "/random/comic"
 )
 
 // Comic is the parsed version of the JSON returned by the xkcd API.
