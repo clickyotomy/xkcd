@@ -2,7 +2,6 @@ package xkcd
 
 import "fmt"
 
-// ExampleFetchComic shows the usage of FetchComic.
 func ExampleFetchComic() {
 	comic, err := FetchComic(1024)
 
