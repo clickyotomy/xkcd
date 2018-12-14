@@ -6,7 +6,7 @@ func ExampleFetchComic() {
 	comic, err := FetchComic(1024)
 
 	if err != nil {
-		fmt.Errorf("%s\n", err)
+		fmt.Printf("%s", err)
 	}
 
 	fmt.Printf(

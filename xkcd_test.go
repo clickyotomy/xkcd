@@ -34,17 +34,17 @@ var (
 func loadTest(comic *xkcd.Comic, img *[]byte) (err error) {
 	testJSON, err := ioutil.ReadFile(filepath.Join(testDir, "error_code.json"))
 	if err != nil {
-		fmt.Errorf("Unable to read test data!\n")
+		fmt.Printf("Unable to read test data!\n")
 		panic(err)
 	}
 	*comic, err = xkcd.ParseComicResponse(testJSON)
 	if err != nil {
-		fmt.Errorf("Unable to parse data!\n")
+		fmt.Printf("Unable to parse data!\n")
 		panic(err)
 	}
 	*img, err = ioutil.ReadFile(filepath.Join(testDir, "error_code.png"))
 	if err != nil {
-		fmt.Errorf("Unable to read test image!\n")
+		fmt.Printf("Unable to read test image!\n")
 		panic(err)
 	}
 	return nil
