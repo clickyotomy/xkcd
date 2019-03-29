@@ -4,11 +4,6 @@ xkcd
 A simple wrapper around xkcd's JSON interface, written in `go'.
 
 To install, run:
-    $ go get "github.com/clickyotomy/xkcd"
+    $ go get -u "github.com/clickyotomy/xkcd"
 
-For documentation*, go here: https://godoc.org/github.com/clickyotomy/xkcd.
-
-[*] Note: The `godoc' might not work at the time of writing, because there
-          is no support for `go-modules', yet.
-          Reference: https://github.com/golang/go/issues/24661. 
-	
+For documentation, go here: https://godoc.org/github.com/clickyotomy/xkcd.

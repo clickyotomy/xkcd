@@ -1,4 +1,4 @@
-package xkcd
+package xkcd_test
 
 import "fmt"
 
