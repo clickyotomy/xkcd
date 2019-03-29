@@ -1,5 +1,5 @@
 // Package xkcd is a simple wrapper around xkcd's JSON interface.
-package xkcd // import github.com/clickyotomy/xkcd
+package xkcd
 
 import (
 	"encoding/json"
